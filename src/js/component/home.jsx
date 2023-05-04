@@ -17,7 +17,7 @@ const Semaforo = () => {
     purple += " d-none";
   }
 
-  const youClick = (e) => {
+  const selectLight = (e) => {
     setLight(e.target.id);
   };
 
@@ -38,10 +38,10 @@ const Semaforo = () => {
   return (
     <div className="d-flex flex-column justify-content-center">
       <div className="container d-flex flex-column bg-dark mx-auto">
-        <div className={danger} id="danger" onClick={youClick}></div>
-        <div className={warning} id="warning" onClick={youClick}></div>
-        <div className={succes} id="success" onClick={youClick}></div>
-        <div className={purple} id="purple" onClick={youClick}></div>
+        <div className={danger} id="danger" onClick={selectLight}></div>
+        <div className={warning} id="warning" onClick={selectLight}></div>
+        <div className={succes} id="success" onClick={selectLight}></div>
+        <div className={purple} id="purple" onClick={selectLight}></div>
       </div>
       <div className="buttons">
         <button className="btn btn-success" onClick={changeLight}>
