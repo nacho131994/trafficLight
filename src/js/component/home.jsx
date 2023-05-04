@@ -1,26 +1,60 @@
-import React from "react";
+import React, { useState } from "react";
 
-//include images into your bundle
-import rigoImage from "../../img/rigo-baby.jpg";
+const Semaforo = () => {
+  const [light, setLight] = useState("");
 
-//create your first component
-const Home = () => {
-	return (
-		<div className="text-center">
-			<h1 className="text-center mt-5">Hello Rigo!</h1>
-			<p>
-				<img src={rigoImage} />
-			</p>
-			<a href="#" className="btn btn-success">
-				If you see this green button... bootstrap is working...
-			</a>
-			<p>
-				Made by{" "}
-				<a href="http://www.4geeksacademy.com">4Geeks Academy</a>, with
-				love!
-			</p>
-		</div>
-	);
+  const [purpleLight, setPurpleLight] = useState(false);
+
+  const danger =
+    light === "danger" ? "lights bg-danger clicked" : "lights bg-danger";
+  const warning =
+    light === "warning" ? "lights bg-warning clicked" : "lights bg-warning";
+  const succes =
+    light === "success" ? "lights bg-success clicked" : "lights bg-success";
+  let purple = light === "purple" ? "lights purple clicked" : "lights purple";
+
+  if (!purpleLight) {
+    purple += " d-none";
+  }
+
+  const youClick = (e) => {
+    setLight(e.target.id);
+  };
+
+  const changeLight = () => {
+    setLight("danger");
+    if (light === "danger") {
+      setLight("warning");
+    } else if (light === "warning") {
+      setLight("success");
+    } else if(light === 'success'){
+      setLight("purple");
+    }else{setLight('danger')}
+  };
+
+  const newLight = () => {
+    setPurpleLight(!purpleLight);
+  };
+  return (
+    <div className="d-flex flex-column justify-content-center">
+      <div className="container d-flex flex-column bg-dark mx-auto">
+        <div className={danger} id="danger" onClick={youClick}></div>
+        <div className={warning} id="warning" onClick={youClick}></div>
+        <div className={succes} id="success" onClick={youClick}></div>
+        <div className={purple} id="purple" onClick={youClick}></div>
+      </div>
+      <div className="buttons">
+        <button className="btn btn-success" onClick={changeLight}>
+          Change Light
+        </button>
+      
+      
+        <button className="btn btn-danger" onClick={newLight}>
+          Create new light
+        </button>
+      </div>
+    </div>
+  );
 };
 
-export default Home;
+export default Semaforo;
